@@ -56,6 +56,7 @@ exports.show = [
   ' -t, --type        Type gestor database: mysql|postgres|mongodb  Default: mysql',
   ' -s, --schema      (Only PostgreSQL) Schema database postgres: Default: public',
   ' -f, --file        (Only MySQL) .sql file path entry' + color(' (Experimental)', 'yellow'),
+  ' -a, --table       Tables to export, comma separated if more than one',
   '\n',
   '====================== Individual generation ==================',
   'You can quickly generate a model, a controller, a view or these three at the sam' +

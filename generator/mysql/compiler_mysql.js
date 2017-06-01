@@ -16,7 +16,7 @@ require('../../configs/color');
 
 var FK_IDENTIFIER = "id";
 
-exports.generate = function(config, folder_models, folder_controllers, folder_views) {
+exports.generate = function(config, folder_models, folder_controllers, folder_views, tables) {
   // Describe connected database
   mysqldesc(config, function(err, data) {
     if (err) {
@@ -26,7 +26,8 @@ exports.generate = function(config, folder_models, folder_controllers, folder_vi
         count = 1;
 
       async.forEachOf(data, function(value, table, callback) {
-        if (data.hasOwnProperty(table)) {
+        if ( (tables === 'undefined' || typeof tables.split(",")[table] != 'undefined')
+            && data.hasOwnProperty(table)) {
           console.log(color("[" + (count++) + " Generating]", "blue") + " " + table + " table ...");
 
           var attributes_sails = [],

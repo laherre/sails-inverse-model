@@ -101,7 +101,7 @@ if (g) {
     db,                   // Option name database
     host,                 // Option host database
     port,                 // Option port database
-    folder_models,        // Option path folder models 
+    folder_models,        // Option path folder models
     folder_controllers,   // Option path folder controllers
     folder_views,         // Option path folder views
     schema,               // Option schema database => postgres
@@ -119,7 +119,7 @@ if (g) {
   if (pass === true) {
     pass = undefined;
     console.warn("Missing password database");
-    process.exit(1);    
+    process.exit(1);
   } else if (pass) {
     pass = pass.toString();
   }
@@ -172,6 +172,12 @@ if (g) {
     filesql = undefined; // Method concat: see configs/route.js
   }
 
+  //table(s) - comma separated if more than one
+  tables = cli.flags.a || cli.flags.table;
+  if (tables === true || tables == "true") {
+    tables = undefined;
+  }
+
   // Mysql, postgres & mongo connect config.
   var config = {
     user: user,
@@ -200,7 +206,7 @@ if (g) {
         generate_pg.generate(config, folder_models, folder_controllers, folder_views);
       } else if (type.indexOf("my") != -1 || type.indexOf("mysql") != -1) { //my, mysql
         delete config.schema;
-        generate_my.generate(config, folder_models, folder_controllers, folder_views);
+        generate_my.generate(config, folder_models, folder_controllers, folder_views, tables);
       } else if (type.indexOf("mg") != -1 || type.indexOf("mongo") != -1) {
         //mg, mongo
         generate_mg
