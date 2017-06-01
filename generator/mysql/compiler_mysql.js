@@ -24,9 +24,8 @@ exports.generate = function(config, folder_models, folder_controllers, folder_vi
     } else {
       var Models = [],
         count = 1;
-
       async.forEachOf(data, function(value, table, callback) {
-        if ( (tables === 'undefined' || typeof tables.split(",")[table] != 'undefined')
+        if ( (tables === 'undefined' || tables.split(",").indexOf(table) != -1)
             && data.hasOwnProperty(table)) {
           console.log(color("[" + (count++) + " Generating]", "blue") + " " + table + " table ...");
 
