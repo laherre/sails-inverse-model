@@ -106,7 +106,8 @@ if (g) {
     folder_views,         // Option path folder views
     schema,               // Option schema database => postgres
     type,                 // Option type gestor database: mysql, postgres, mongodb
-    filesql;              // Option path file .sql
+    filesql,              // Option path file .sql
+    tables;               // Option tables
 
   //User
   user = cli.flags.u || cli.flags.user;
